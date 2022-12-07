@@ -32,11 +32,15 @@ tar xvfz gurobix.x.x_linux64.tar.gz
 ```
 
 Make sure you replace x.x.x by the actual version name visible in the downloaded file.
-This command will create a sub-directory /opt/gurobixxx/linux64 that contains the complete Gurobi distribution (assuming you chose /opt). Your **installdir** (which we'll refer to throughout this document) will be /opt/gurobixxx/linux64. The Gurobi Optimizer makes use of several executable files. In order to allow these files to be found when needed, you will have to modify a few environment variables:
+This command will create a sub-directory /opt/gurobixxx/linux64 that contains the complete Gurobi distribution (assuming you chose /opt). Your *installdir* (which we'll refer to throughout this document) will be /opt/gurobixxx/linux64.
 
-* GUROBI_HOME should point to your <installdir>.
-* PATH should be extended to include <installdir>/bin.
-* LD_LIBRARY_PATH should be extended to include <installdir>/lib.
+**Setting up Path variables**
+
+The Gurobi Optimizer makes use of several executable files. In order to allow these files to be found when needed, you will have to modify a few environment variables:
+
+* GUROBI_HOME should point to your *installdir*.
+* PATH should be extended to include *installdir*/bin.
+* LD_LIBRARY_PATH should be extended to include *installdir*/lib.
 
 Users of the bash shell should add the following lines to their .bashrc files located in their HOME. This can be done in the Delftblue using ![](https://img.shields.io/badge/Vim-blue?style=for-the-badge&logo=Vim) editorby follwing commands:
 
@@ -54,11 +58,19 @@ export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib"
 ```
   
 Press **esc** key and then exit the editor by typing **:wq:** enter.
- 
+
 
 > **Note** More information abailable at: https://www.gurobi.com/documentation/9.0/quickstart_linux/software_installation_guid.html
 
-  ### Installng Gurobi (Using conda) (Recomended)
+**Connecting Gurobi installations to Python**
+You need to run a script **setup.py** available with the gurobi installation files. For it follow the commands:
+```
+cd /home/netid/opt/gurobi952/linux64
+python setup.py
+```
+
+### Installng Gurobi (Using conda) (Recomended)
+  
 ```bash
 module load miniconda3
 conda env create "new_env" python=3.10.8
