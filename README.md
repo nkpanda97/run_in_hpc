@@ -120,4 +120,4 @@ Remember to replace "new_env" by the actual name of the evironment. If the insta
 >> y: -29.0
 ```
 > **Note** The code will take around 5 mins to run, so be patient
-If it does not show any output or shows some error, you need to check if all the previous steps are correctly followed. For any questions feel free to contact ![me](https://github.com/nkpanda97)
+If it does not show any output or shows some error, you need to check if all the previous steps are correctly followed. For any questions feel free to contact [me](https://github.com/nkpanda97)
