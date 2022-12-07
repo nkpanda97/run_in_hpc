@@ -99,4 +99,9 @@ conda install -c gurobi=9.5.2 gurobi
 Now your Gurobi installation setup is ready. Time for testing.
   ## Testing the installations
   
-  
+Create a test.py script in your HOME directory using:
+```
+vim test.py
+```
+
+Now type the code available in [opt_test.py](opt_test.py)
