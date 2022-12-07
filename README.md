@@ -103,5 +103,21 @@ Create a test.py script in your HOME directory using:
 ```
 vim test.py
 ```
-
 Now type the code available in [opt_test.py](opt_test.py)
+Save and quit Vim editor by typing- ":wq", hit enter. Run the file using:
+```
+module load miniconda3
+conda activate "new_env"
+python test.py
+```
+
+Remember to replace "new_env" by the actual name of the evironment. If the installations and license is correct you will get the following output in your Delftblue terminal:
+```
+>> Optimisation problem solved sucessfully
+
+>> *** Solution *** :
+>> x: 100.0
+>> y: -29.0
+```
+> **Note** The code will take around 5 mins to run, so be patient
+If it does not show any output or shows some error, you need to check if all the previous steps are correctly followed. For any questions feel free to contact [me](www.github.com/nkpanda97)
