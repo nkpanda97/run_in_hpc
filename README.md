@@ -51,13 +51,66 @@ Quota information for storage pool home (ID: 2):
 If you want to avoid entering password everytime you log in into DelftBlue, you can set up **SSH-key** generation by following this [website](https://kb.n0c.com/en/knowledge-base/how-to-create-an-ssh-key-and-connect-to-an-account/), and choose the correct operating system.
 > **Note** This step is important and needs to be done only in ur private system, so that you can always connect to your remote server without authentication
 
+## Setting up Python
+### Create directories for libraries
+In windows the general file structure is as follows: 
+* C:\Windows
+* C:\Users
+* C:\Program Files
+
+For Linux, the folder structure is:
+
+* **/** : Root folder
+* **~** : Personal home folder
+* **.** : Current directory. Important for executing programs
+* **..** : One folder up from the current directory
+
+In Linux everything is represented as a *File*
+
+You can create these directories on the scratch storage and link to them in your home directory. For example when using conda:
+```python
+mkdir -p /scratch/${USER}/.conda
+ln -s /scratch/${USER}/.conda $HOME/.conda
+```
+
+When using pip:
+
+ ```python
+mkdir -p /scratch/${USER}/.local
+ln -s /scratch/${USER}/.local $HOME/.local
+```
+### Clone your git-repository (The best way)
+1. Type the folllowing code in \HOME directory to create a new folder
+```python
+mkdir ${dirname} 
+```
+2. Follow the instruction at https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token to generate the **personal access code** for your git account. Skip this step if you dont have 2FA turned on.
+3. Type the following and then put your username and password
+```python
+git clone <repository name: full url address>
+```
+If using 2FA input the personal access code instead of your password.
+
+
+#### Saving GIT credentials
+It will be troublesome to enter your GIT credentials everytime for performing GIT PULL, PUSH , etc. To avoid this you could cache the git credentials by following the steps here: https://github.com/cli/cli
+
+### Installing libraries using CONDA
+First generate the required repository names from the local machine using a conda environment using follows:
+```python
+conda activate <my_env>
+conda env export --from-history -f <file_name>.yml
+```
+Copy the <file_name>.yml to the delftblue and run the next commands.
+Type this command to install all the required packages diirectly from a <file_name.yml> file created from a local computer:
+```python
+conda env create -f <full_path/environment.yml>
+```
 # Solving Optimization using Pyomo and GUROBI
 ![](https://img.shields.io/badge/Python-3.10.8-181717?style=for-the-badge&logo=python) 
 ![](https://img.shields.io/badge/Conda-4.12.0-red?style=for-the-badge&logo=anaconda) 
 ![](https://img.shields.io/badge/Pyomo-6.4.3-yellow?style=for-the-badge&logo=)
 ![](https://img.shields.io/badge/Gurobi-9.5.2-EE3524?style=for-the-badge&logo=Gurobi) 
-
-
 ## Installing Gurobi (Using executable)
 Download the gurobi software by logging in from: https://www.gurobi.com/downloads/gurobi-software/ in your **local computer**. Lets say you have it downloaded in the directory: /Users/matrix/Desktop/Downloads. The downloaded file will have a name: *tar xvfz gurobix.x.x_linux64.tar.gz*
 
