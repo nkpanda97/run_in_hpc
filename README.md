@@ -1,6 +1,56 @@
 # run_in_hpc
 Examples and tutorials for running your Python based code in High Power Computing (HPC) clusters
 
+# Workflow for running a Python script
+![](https://img.shields.io/badge/Python-3.10.8-181717?style=for-the-badge&logo=python) 
+![](https://img.shields.io/badge/Conda-4.12.0-red?style=for-the-badge&logo=anaconda) 
+
+## Logging into DelftBlue
+Enter the following command in terminal (Mac OS) or in the command prompt (Windows).
+```bash
+ssh <netid>@login.delftblue.tudelft.nl
+```
+Press Enter, you will be asked to enter your NetID password:
+```bash
+<netid>@login.delftblue.tudelft.nl's password:
+```
+Please note, that you will not see any characters appearing on the screen as you type your password. This is normal, and is designed to increase security, so that people watching over your shoulder don't even know how many characters your password contains. Once you typed in your password, press Enter again. You should see the following:
+```bash
+    ____       ________  ____  __
+   / __ \___  / / __/ /_/ __ )/ /_  _____
+  / / / / _ \/ / /_/ __/ __  / / / / / _ \
+ / /_/ /  __/ / __/ /_/ /_/ / / /_/ /  __/
+/_____/\___/_/_/  \__/_____/_/\__,_/\___/
+
+As DelftBlue is a new system and was newly installed and configured, some things might not be fully working yet, and are still in the process of being set up.
+
+For information about using DelftBlue, see the documentation: https://www.tudelft.nl/dhpc/documentation (login using your TU Delft account)
+When you have questions, you can ask them in the DHPC chat service: https://mattermost.tudelft.nl/dhpc/ (login using your TU Delft account)
+
+Last login: Thu Jul 21 16:56:39 2022 from 145.90.36.181
+
+
+Quota information for storage pool scratch (ID: 1):
+
+      user/group     ||           size          ||    chunk files
+     name     |  id  ||    used    |    hard    ||  used   |  hard
+--------------|------||------------|------------||---------|---------
+      <netid>|588559||   20.63 GiB|    5.00 TiB||   278772|  1000000
+
+Quota information for storage pool home (ID: 2):
+
+      user/group     ||           size          ||    chunk files
+     name     |  id  ||    used    |    hard    ||  used   |  hard
+--------------|------||------------|------------||---------|---------
+      <netid>|588559||    3.44 GiB|    8.00 GiB||    48433|  1000000
+
+ 11:54:16 up 48 days, 19:22,  6 users,  load average: 0.09, 0.20, 0.15
+
+ [<netid>@login04 ~]$
+```
+If you want to avoid entering password everytime you log in into DelftBlue, you can set up **SSH-key** generation by following this [website](https://kb.n0c.com/en/knowledge-base/how-to-create-an-ssh-key-and-connect-to-an-account/), and choose the correct operating system.
+> **Note** This step is important and needs to be done only in ur private system, so that you can always connect to your remote server without authentication
+
 # Solving Optimization using Pyomo and GUROBI
 ![](https://img.shields.io/badge/Python-3.10.8-181717?style=for-the-badge&logo=python) 
 ![](https://img.shields.io/badge/Conda-4.12.0-red?style=for-the-badge&logo=anaconda) 
