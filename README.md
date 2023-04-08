@@ -171,6 +171,36 @@ You need to run a script **setup.py** available with the gurobi installation fil
 cd /home/netid/opt/gurobi952/linux64
 python setup.py
 ```
+### Running Python script on a remote server in background (without SLURM, e.g. delftblue)
+You can use the nohup command to run the Python script in the background and disassociate it from the terminal session. This will allow the script to continue running even after you log out of the remote host.
+
+Here are the steps to follow:
+
+1. While you're still connected to the remote host via ssh, run the Python script using the nohup command like this:
+
+
+    ```shell
+    nohup python script.py &
+    ```
+The & at the end of the command runs the script in the background.
+
+2. Press Enter to execute the command. The script will start running in the background.
+
+3. Type exit to log out of the remote host. This will close the ssh connection, but the Python script will continue running in the background.
+
+You can now disconnect from the remote host without interrupting the Python script. If you want to check on the status of the script later, you can log back in to the remote host and use the ps command to see a list of running processes. Look for the process ID (PID) of the Python script and use the kill command to stop it if needed.
+
+4. To redirect the output of a Python script to a text file, you can use the command-line shell redirection operator > to send the output to a file.
+
+```shell
+nohup python script.py > output.txt 2>error.txt &
+```
+This command runs the script.py Python script and redirects its output to the output.txt file. The > operator creates a new file if it doesn't exist, or overwrites the file if it already exists. If you want to append the output to an existing file instead of overwriting it, you can use the >> operator. To redirect error output (stderr) to a file, you can use the 2> operator in the command-line shell.
+
+> **Note** Note that the output that is redirected to the file depends on how the Python script is written. If the script prints output to the console using the print() function, that output will be redirected to the file. If the script writes output to a file using Python's file I/O functions, then the output will be written directly to the file without being redirected.
+
+> **Note** Note that when you redirect error output, the script may continue running even if errors occur, and you may not see the error messages on the console. Therefore, it's important to check the error file for any error messages that were generated during the script's execution.
+
 
 ### Installng Gurobi (Using conda) (Recomended)
   
