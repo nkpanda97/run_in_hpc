@@ -265,3 +265,90 @@ What is MPI?
 Since its release, the MPI specification [mpi-std1]_ [mpi-std2]_ has become the leading standard for message-passing libraries for parallel computers.  Implementations are available from vendors of high-performance computers and from well known open source projects like MPICH_ [mpi-mpich]_ and `Open MPI`_ [mpi-openmpi]_.
 
 For official information on mpi4py, go [here](https://mpi4py.readthedocs.io/)
+
+
+mpi4py on HPC Clusters 
+-----------------------
+The following is tested for [**Surf Snellius HPC cluster**](https://www.surf.nl/en/services/snellius-the-national-supercomputer)
+
+NOTE: Do not use conda install mpi4py. This will install its version of MPI instead of using one of the optimized versions that exist on the cluster. The version with conda will work, but it will be very slow.
+
+The proper way to install mpi4py is to use pip together with one of the MPI libraries that already exist on the cluster. What follows are step-by-step instructions on how to set up mpi4py on the Tiger cluster. 
+
+1. Connect to HPC (Snellius or DelftBlue)
+```
+ssh <YourUserID>@snellius.surf.nl
+```
+where <YourUserID> is your login ID. You might need to be connected to your university VPN.
+
+2. Create and Activate a Conda Environment
+
+Load an Anaconda module and create a Python environment (see note below if using Python 3.9+):
+```
+module load 2023
+module load module load Anaconda3/2023.07-2
+onda create --name fast-mpi4py python=3.8 -y
+source activate fast-mpi4py
+```
+You should list all your Conda packages on the "conda create" line above so that the dependencies can be worked out correctly from the start. Later in the procedure, we will use pip. One should carry out all the needed Conda installs before using pip.
+
+3. Install mpi4py in the Conda Environment
+
+Load the MPI version you want to use. We recommend using Open MPI in this case. In order to get a list of all the available Open MPI versions on the cluster, run "module avail openmpi".
+The result will look something like:
+```console
+----------------------------- /sw/arch/RHEL8/EB_production/2023/modulefiles/cae ------------------------------
+   Lumerical/2022-R1.1-OpenMPI-4.1.5    Lumerical/2023-R2.3-OpenMPI-4.1.5
+
+----------------------------- /sw/arch/RHEL8/EB_production/2023/modulefiles/mpi ------------------------------
+   OpenMPI/4.1.5-GCC-12.3.0
+
+If the avail list is too long consider trying:
+
+"module --default avail" or "ml -d av" to just list the default modules.
+"module overview" or "ml ov" to display the number of modules for each name.
+
+Use "module spider" to find all possible modules and extensions.
+Use "module keyword key1 key2 ..." to search for all possible modules matching any of the "keys".
+```
+As we see there is only one version of openmpi i.e. 12.3.0, we will load that
+```
+module load OpenMPI/4.1.5-GCC-12.3.0
+```
+Set the loaded version of MPI to be used with mpi4py:
+
+```
+export MPICC=$(which mpicc)
+```
+> **Note** You can check that this variable was set correctly by running echo $MPICC and making sure that it prints something like: /usr/local/openmpi/<x.y.z>/gcc/x86_64/bin/mpicc.
+
+Finally, we install mpi4py using pip:
+```
+pip install mpi4py --no-cache-dir
+```
+> **Note** If you receive a "Requirement already satisfied" message, you may have mistakenly pre-loaded the mpi4py environment module or already installed the package. Make sure you are not loading this environment module in your .bashrc file.
+
+When the installation is finished, check that it was properly installed by running
+$ python -c "import mpi4py"
+If the above command gives no error, mpi4py was successfully installed.
+
+> **NOTE** These instructions work when Python 3.8 is used in the conda environment. If you need Python 3.9 or above, then you will probably encounter this error: **"Could not build wheels for mpi4py"**. The solution is explained below:
+
+The issue is related to Python provided by Conda. The flag "-B /home/pavan/miniconda3/envs/codelab/compiler_compat" will ask the compiler to pick up ld from that path. but the ld provided by conda will cause some issues when you are using different compiler toolchains.
+
+Steps to fix it:
+```
+cd /home/<UserId>/.conda/envs/fast-mpi4py/compiler_compat
+rm -f ld
+ln -s /usr/bin/ld ld
+```
+and try to build mpi4py again.
+
+after that, revoke that change:
+
+```
+cd /home/<UserId>/.conda/envs/fast-mpi4py/compiler_compat
+rm -f ld
+ln -s ../bin/x86_64-conda-linux-gnu-ld ld
+```
+
