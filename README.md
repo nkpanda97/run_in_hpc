@@ -254,3 +254,14 @@ Remember to replace "new_env" by the actual name of the evironment. If the insta
 ```
 > **Note** The code will take around 5 mins to run, so be patient
 If it does not show any output or shows some error, you need to check if all the previous steps are correctly followed. For any questions feel free to contact [me](https://github.com/nkpanda97)
+
+
+# Working with MPI (mpi4py)
+
+What is MPI?
+------------
+
+*Message Passing Interface*, is a standardized and portable message-passing system designed to function on a wide variety of parallel computers. The standard defines the syntax and semantics of library routines and allows users to write portable programs in the main scientific programming languages (Fortran, C, or C++).
+Since its release, the MPI specification [mpi-std1]_ [mpi-std2]_ has become the leading standard for message-passing libraries for parallel computers.  Implementations are available from vendors of high-performance computers and from well known open source projects like MPICH_ [mpi-mpich]_ and `Open MPI`_ [mpi-openmpi]_.
+
+For official information on mpi4py, go [here](https://mpi4py.readthedocs.io/)
