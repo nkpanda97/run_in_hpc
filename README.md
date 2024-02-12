@@ -15,7 +15,7 @@ Press Enter, you will be asked to enter your NetID password:
 <netid>@login.delftblue.tudelft.nl's password:
 ```
 Please note, that you will not see any characters appearing on the screen as you type your password. This is normal, and is designed to increase security, so that people watching over your shoulder don't even know how many characters your password contains. Once you typed in your password, press Enter again. You should see the following:
-```bash
+```console
     ____       ________  ____  __
    / __ \___  / / __/ /_/ __ )/ /_  _____
   / / / / _ \/ / /_/ __/ __  / / / / / _ \
