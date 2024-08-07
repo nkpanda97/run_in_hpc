@@ -171,7 +171,7 @@ You need to run a script **setup.py** available with the gurobi installation fil
 cd /home/netid/opt/gurobi952/linux64
 python setup.py
 ```
-### Running Python script on a remote server in background (without SLURM, e.g. delftblue)
+### Running Python script on a remote server in the background using nohup (without SLURM, e.g. delftblue)
 You can use the nohup command to run the Python script in the background and disassociate it from the terminal session. This will allow the script to continue running even after you log out of the remote host.
 
 Here are the steps to follow:
@@ -200,7 +200,10 @@ This command runs the script.py Python script and redirects its output to the ou
 > **Note** Note that the output that is redirected to the file depends on how the Python script is written. If the script prints output to the console using the print() function, that output will be redirected to the file. If the script writes output to a file using Python's file I/O functions, then the output will be written directly to the file without being redirected.
 
 > **Note** Note that when you redirect error output, the script may continue running even if errors occur, and you may not see the error messages on the console. Therefore, it's important to check the error file for any error messages that were generated during the script's execution.
+> 
+### Running Python script on a remote server in the background using TMUX (without SLURM, e.g. delftblue)
 
+Refer here [TMUX home](https://github.com/tmux/tmux/wiki)
 
 ### Installng Gurobi (Using conda) (Recomended)
   
