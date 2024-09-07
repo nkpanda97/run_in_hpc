@@ -211,7 +211,7 @@ Refer here [TMUX home](https://github.com/tmux/tmux/wiki)
 module load miniconda3
 conda env create "new_env" python=3.10.8
 conda activate "new_env"
-conda install -c gurobi=9.5.2 gurobi
+conda install -c gurobi gurobi=9.5.2
 ```
   
  ## Installing Pyomo
